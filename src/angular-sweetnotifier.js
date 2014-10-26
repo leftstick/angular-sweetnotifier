@@ -28,10 +28,6 @@
     var dir = function($rootScope, $timeout) {
         return {
             restrict: 'AE',
-            scope: {
-                type: '@',
-                responsiveOptions: '='
-            },
             link: function($scope, element) {
 
                 $scope.items = [];
