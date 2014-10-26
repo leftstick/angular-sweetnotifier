@@ -5,7 +5,6 @@ demo.controller('DemoController', function($scope, notifier) {
 
     $scope.topRight = function() {
         notifier.push({
-            timeout: 100000,
             position: ['top', 'right'],
             type: 'info',
             title: 'Info',
@@ -15,7 +14,6 @@ demo.controller('DemoController', function($scope, notifier) {
 
     $scope.topLeft = function() {
         notifier.push({
-            timeout: 100000,
             position: ['top', 'left'],
             type: 'warning',
             title: 'Warning',
@@ -25,7 +23,6 @@ demo.controller('DemoController', function($scope, notifier) {
 
     $scope.middleRight = function() {
         notifier.push({
-            timeout: 100000,
             position: ['middle', 'right'],
             type: 'success',
             title: 'Success',
@@ -35,7 +32,6 @@ demo.controller('DemoController', function($scope, notifier) {
 
     $scope.middleLeft = function() {
         notifier.push({
-            timeout: 100000,
             position: ['middle', 'left'],
             type: 'error',
             title: 'Error',
@@ -45,7 +41,6 @@ demo.controller('DemoController', function($scope, notifier) {
 
     $scope.bottomRight = function() {
         notifier.push({
-            timeout: 100000,
             position: ['bottom', 'right'],
             type: 'info',
             title: 'Info',
@@ -55,7 +50,6 @@ demo.controller('DemoController', function($scope, notifier) {
 
     $scope.bottomLeft = function() {
         notifier.push({
-            timeout: 100000,
             position: ['bottom', 'left'],
             type: 'warning',
             title: 'Warning',
