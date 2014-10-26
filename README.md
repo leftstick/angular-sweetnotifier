@@ -6,6 +6,8 @@ A simple angular notifier
 
 ![](./docs/img/demo.png)
 
+Full featured demo: [DEMO](http://leftstick.github.io/angular-sweetnotifier/)
+
 ## Requirements ##
 
 - [angular][angular-url]
