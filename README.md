@@ -3,6 +3,9 @@
 
 A simple angular notifier
 
+
+![](./docs/img/demo.png)
+
 ## Requirements ##
 
 - [angular][angular-url]
