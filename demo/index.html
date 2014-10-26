@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo">
+    <head>
+        <title>DEMO</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="yes"/>
+        <meta name="renderer" content="webkit"/>
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <link rel="icon" type="image/png" href="img/favicon.png">
+        <link rel="stylesheet" href="prism.css">
+        <link rel="stylesheet" type="text/css" href="bower/amazeui/dist/css/amazeui.min.css">
+        <link rel="stylesheet" type="text/css" href="bower/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="angular-sweetnotifier.css">
+        <link rel="stylesheet" type="text/css" href="demo.css">
+    </head>
+
+    <body ng-controller="DemoController">
+        <notifier></notifier>
+
+        <div class="get">
+            <div class="am-g">
+                <div class="col-lg-12">
+                    <h1 class="get-title">angular-sweetnotifier</h1>
+                    <p>
+                    <a href="https://github.com/leftstick/angular-sweetnotifier" class="am-btn am-btn-sm am-btn-secondary">Github Source</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="detail">
+            <div class="am-g am-container">
+                <div class="col-lg-12">
+                    <h2 class="detail-h2">Cool notifications!</h2>
+                    <div class="am-g">
+                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
+                            <h3 class="detail-h3">
+                            <i class="am-icon-arrow-up am-icon-sm"></i>
+                            <i class="am-icon-align-right am-icon-sm"></i>
+                            TopRight
+                            </h3>
+<pre><code class="language-javascript">
+demo.controller('DemoController', function($scope) {
+    $scope.topRight = function() {
+        notifier.push({
+            position: ['top', 'right'],
+            type: 'info',
+            title: 'Info',
+            message: 'Time to show the message!'
+        });
+    };
+});
+</code></pre>
+                            <button ng-click="topRight()" type="button" class="am-btn am-btn-secondary am-btn-block" >Try</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
+                            <h3 class="detail-h3">
+                            <i class="am-icon-arrow-up am-icon-sm"></i>
+                            <i class="am-icon-align-left am-icon-sm"></i>
+                            TopLeft
+                            </h3>
+<pre><code class="language-javascript">
+demo.controller('DemoController', function($scope) {
+    $scope.topRight = function() {
+        notifier.push({
+            position: ['top', 'right'],
+            type: 'info',
+            title: 'Info',
+            message: 'Time to show the message!'
+        });
+    };
+});
+</code></pre>
+                            <button ng-click="topLeft()" type="button" class="am-btn am-btn-secondary am-btn-block" >Try</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
+                            <h3 class="detail-h3">
+                            <i class="am-icon-align-right am-icon-sm"></i>
+                            MiddleRight
+                            </h3>
+                            <pre><code class="language-javascript">
+demo.controller('DemoController', function($scope) {
+    $scope.topRight = function() {
+        notifier.push({
+            position: ['middle', 'right'],
+            type: 'success',
+            title: 'Success',
+            message: 'Congratulations!'
+        });
+    };
+});
+</code></pre>
+                            <button ng-click="middleRight()" type="button" class="am-btn am-btn-secondary am-btn-block" >try</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
+                            <h3 class="detail-h3">
+                            <i class="am-icon-align-left am-icon-sm"></i>
+                            MiddleLeft
+                            </h3>
+                            <pre><code class="language-javascript">
+demo.controller('DemoController', function($scope) {
+    $scope.topLeft = function() {
+        notifier.push({
+            position: ['middle', 'left'],
+            type: 'error',
+            title: 'Error',
+            message: 'What you\'ve done is incorrect!'
+        });
+    };
+});
+</code></pre>
+                            <button ng-click="middleLeft()" type="button" class="am-btn am-btn-secondary am-btn-block" >try</button>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
+                            <h3 class="detail-h3">
+                            <i class="am-icon-arrow-down am-icon-sm"></i>
+                            <i class="am-icon-align-right am-icon-sm"></i>
+                            BottomRight
+                            </h3>
+                            <pre><code class="language-javascript">
+demo.controller('DemoController', function($scope) {
+    $scope.topLeft = function() {
+        notifier.push({
+            position: ['bottom', 'right'],
+            type: 'info',
+            title: 'Info',
+            message: 'Hi, i am here!'
+        });
+    };
+});
+</code></pre>
+                            <button ng-click="bottomRight()" type="button" class="am-btn am-btn-secondary am-btn-block" >try</button>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
+                            <h3 class="detail-h3">
+                            <i class="am-icon-arrow-down am-icon-sm"></i>
+                            <i class="am-icon-align-left am-icon-sm"></i>
+                            BottomLeft
+                            </h3>
+                            <pre><code class="language-javascript">
+demo.controller('DemoController', function($scope) {
+    $scope.topLeft = function() {
+        notifier.push({
+            position: ['bottom', 'left'],
+            type: 'warning',
+            title: 'Warning',
+            message: 'What\'s going on?'
+        });
+    };
+});
+</code></pre>
+                            <button ng-click="bottomLeft()" type="button" class="am-btn am-btn-secondary am-btn-block" >try</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hope">
+            <div class="am-g am-container">
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <h2 class="hope-title">
+                        Give message at desired place!
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+
+    <footer class="footer">
+            <p>&copy; 2014 Licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a>. by <a href="http://leftstick.github.io/" target="_blank">Howard.Zuo</a>.</p>
+    </footer>
+    <script type="text/javascript" src="prism.js"></script>
+    <script type="text/javascript" src="bower/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="angular-sweetnotifier.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+</body>
+</html>

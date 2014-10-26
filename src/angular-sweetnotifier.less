@@ -1,0 +1,139 @@
+@notifier-width: 380px;
+@bg-color: rgba(2, 45, 59, 0.9);
+@border-color: lighten(@bg-color, 13%);
+@info-color: #FFF;
+@warning-color: #FFA226;
+@error-color: #FF4B4F;
+@success-color: #B4D455;
+@text-color: #BFE2DE;
+@notifier-height: 80px;
+@title-color: #fff;
+@title-font-size: 20px;
+
+.notifier-wrapper{
+    position: relative;
+    z-index: 10000;
+    .notifier {
+        z-index: 10000;
+        position: fixed;
+        width: @notifier-width;
+        background-color: @bg-color;
+        clear: both;
+        min-height: @notifier-height;
+        max-height: @notifier-height + 10;
+        border-radius: 5px;
+        color: @text-color;
+        border: 1px solid @border-color;
+        overflow: hidden;
+
+        &.top {
+            top: 20px;
+        }
+        &.bottom {
+            bottom: 20px;
+        }
+        &.middle {
+            top: 40%;
+        }
+
+        &.right {
+            right: 20px;
+        }
+        &.left {
+            left: 20px;
+        }
+        &.center {
+            left: 50%;
+            margin-left: -(@notifier-width / 2);
+        }
+
+        .notifier-close {
+            display: block;
+            padding: 3px;
+            font-size: 14px;
+            color: #adfaff;
+            position: absolute;
+            right: -1px;
+            transition: all 0.35s cubic-bezier(0.31, 0.39, 0.21, 1.65);
+            cursor: pointer;
+            .fa{
+                padding-left: 3px;
+            }
+
+            &:hover {
+                transform: scale3d(1.25, 1.25, 1);
+            }
+        }
+
+        .notifier-image {
+            width: @notifier-height;
+            height: @notifier-height;
+            border-right: 1px solid @border-color;
+            float: left;
+            display: block;
+            font-size: @notifier-height / 2;
+            color: white;
+            text-align: center;
+            .fa{
+                display: block;
+                width: 100%;
+                padding-top: 25px;
+            }
+
+            .fa-info {
+                color: @info-color;
+            }
+
+            .fa-warning {
+                color: @warning-color;
+            }
+
+            .fa-times {
+                color: @error-color;
+            }
+
+            .fa-check {
+                color: @success-color;
+            }
+        }
+
+        .notifier-title {
+            color: @title-color;
+            margin: 0px;
+            padding: 0px;
+            font-size: @title-font-size;
+        }
+
+        .notifier-content {
+            padding-left: 100px;
+            padding-top: 5px;
+        }
+
+        .notifier-text {
+            font-size: 12px;
+        }
+
+    }
+
+    &.ng-enter {
+        transition-property: all;
+        transition-duration: 1.5s;
+        transition-timing-function: ease;
+        opacity: 0;
+         &.ng-enter-active {
+            opacity: 1;
+        }
+    }
+
+    &.ng-leave {
+        transition-property: all;
+        transition-duration: 0.5s;
+        transition-timing-function: ease;
+        opacity: 1;
+        &.ng-leave-active {
+            opacity: 0;
+        }
+    }
+
+}
+
