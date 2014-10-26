@@ -51,7 +51,7 @@ bower install angular-sweetnotifier --save
 
 var demo = angular.module('demo', ['angular-sweetnotifier']);
 
-demo.controller('DemoController', function($scope) {
+demo.controller('DemoController', function($scope, notifier) {
 
     $scope.topRight = function() {
         notifier.push({
