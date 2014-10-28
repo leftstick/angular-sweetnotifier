@@ -1,8 +1,14 @@
 {
   "name": "angular-sweetnotifier",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "homepage": "https://github.com/leftstick/angular-sweetnotifier",
   "description": "a simple angular notifier",
+  "main": [
+    "./dist/angular-sweetnotifier.js",
+    "./dist/angular-sweetnotifier.min.css",
+    "./dist/angular-sweetnotifier.min.js",
+    "./dist/angular-sweetnotifier.min.js.map"
+  ],
   "keywords": [
     "angular",
     "notifier"

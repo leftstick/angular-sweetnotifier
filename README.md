@@ -1,4 +1,4 @@
-# angular-sweetnotifier ![](http://img.shields.io/badge/bower_module-v1.0.4-green.svg) #
+# angular-sweetnotifier ![](http://img.shields.io/badge/bower_module-v1.0.5-green.svg) #
 =====================
 
 A simple angular notifier
