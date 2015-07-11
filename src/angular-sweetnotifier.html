@@ -1,0 +1,12 @@
+<div class="sweetnotifier-wrapper" ng-class="placement">
+    <div class="sweetnotifier" ng-repeat="item in items">
+        <div class="sweetnotifier-close" ng-click="remove(item)">
+            <i class="icon-close"></i>
+        </div>
+        <div class="sweetnotifier-image"><i class="icon-{{item.type}}"></i></div>
+        <div class="sweetnotifier-content">
+            <h3 class="sweetnotifier-title">{{item.title}}</h3>
+            <div class="sweetnotifier-text">{{item.content}}</div>
+        </div>
+    </div>
+</div>

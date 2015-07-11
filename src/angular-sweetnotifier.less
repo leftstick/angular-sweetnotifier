@@ -1,138 +1,224 @@
-@notifier-width: 380px;
+@import "./sweetnotifier";
 @bg-color: rgba(2, 45, 59, 0.9);
-@border-color: lighten(@bg-color, 13%);
+@border-color: lighten(@bg-color, 15%);
+
 @info-color: #FFF;
 @warning-color: #FFA226;
 @error-color: #FF4B4F;
 @success-color: #B4D455;
 @text-color: #BFE2DE;
-@notifier-height: 80px;
 @title-color: #fff;
-@title-font-size: 20px;
 
-.notifier-wrapper{
-    position: relative;
-    z-index: 10000;
-    .notifier {
-        z-index: 10000;
-        position: fixed;
-        width: @notifier-width;
-        background-color: @bg-color;
-        clear: both;
-        min-height: @notifier-height;
-        max-height: @notifier-height + 10;
-        border-radius: 5px;
-        color: @text-color;
-        border: 1px solid @border-color;
-        overflow: hidden;
+@block-height: 90px;
+@block-width: 400px;
+@border-width: 1px;
 
-        &.top {
-            top: 20px;
-        }
-        &.bottom {
-            bottom: 20px;
-        }
-        &.middle {
-            top: 40%;
-        }
+.sweetnotifier-wrapper{
+    position: fixed;
+    z-index: 1000;
+    width: 400px;
+    box-sizing: border-box;
+}
 
-        &.right {
-            right: 20px;
-        }
-        &.left {
-            left: 20px;
-        }
-        &.center {
-            left: 50%;
-            margin-left: -(@notifier-width / 2);
-        }
+.sweetnotifier-wrapper.top-left{
+    top: 5px;
+    left: 5px;
+}
 
-        .notifier-close {
-            display: block;
-            padding: 3px;
-            font-size: 14px;
-            color: #adfaff;
-            transition: all 0.35s cubic-bezier(0.31, 0.39, 0.21, 1.65);
-            cursor: pointer;
-            float: right;
-            .fa{
-                padding-left: 3px;
-            }
+.sweetnotifier-wrapper.top-center{
+    top: 5px;
+    left: 50%;
+    margin-left: -(@block-width / 2);
+}
 
-            &:hover {
-                transform: scale3d(1.25, 1.25, 1);
-            }
-        }
+.sweetnotifier-wrapper.top-right{
+    top: 5px;
+    right: 5px;
+}
 
-        .notifier-image {
-            width: @notifier-height;
-            height: @notifier-height;
-            border-right: 1px solid @border-color;
-            float: left;
-            display: block;
-            font-size: @notifier-height / 2;
-            color: white;
-            text-align: center;
-            .fa{
-                display: block;
-                width: 100%;
-                padding-top: 25px;
-            }
+.sweetnotifier-wrapper.middle-left{
+    top: 50%;
+    margin-top: -(@block-height / 2);
+    left: 5px;
+}
 
-            .fa-info {
-                color: @info-color;
-            }
+.sweetnotifier-wrapper.middle-center{
+    top: 50%;
+    margin-top: -(@block-height / 2);
+    left: 50%;
+    margin-left: -(@block-width / 2);
+}
 
-            .fa-warning {
-                color: @warning-color;
-            }
+.sweetnotifier-wrapper.middle-right{
+    top: 50%;
+    margin-top: -(@block-height / 2);
+    right: 5px;
+}
 
-            .fa-times {
-                color: @error-color;
-            }
+.sweetnotifier-wrapper.bottom-left{
+    bottom: 5px;
+    left: 5px;
+}
 
-            .fa-check {
-                color: @success-color;
-            }
-        }
+.sweetnotifier-wrapper.bottom-center{
+    bottom: 5px;
+    left: 50%;
+    margin-left: -(@block-width / 2);
+}
 
-        .notifier-title {
-            color: @title-color;
-            margin: 0px;
-            padding: 0px;
-            font-size: @title-font-size;
-        }
+.sweetnotifier-wrapper.bottom-right{
+    bottom: 5px;
+    right: 5px;
+}
 
-        .notifier-content {
-            padding-left: 100px;
-            padding-top: 5px;
-        }
-
-        .notifier-text {
-            font-size: 12px;
-        }
-
-    }
-
-    &.ng-enter {
-        transition-property: all;
-        transition-duration: 0.5s;
-        transition-timing-function: ease;
-        opacity: 0;
-         &.ng-enter-active {
-            opacity: 1;
-        }
-    }
-
-    &.ng-leave {
-        transition-property: all;
-        transition-duration: 0.5s;
-        transition-timing-function: ease;
+.sweetnotifier.ng-enter {
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    opacity: 0;
+     &.ng-enter-active {
         opacity: 1;
-        &.ng-leave-active {
-            opacity: 0;
+    }
+}
+
+.sweetnotifier.ng-leave {
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    opacity: 1;
+    &.ng-leave-active {
+        opacity: 0;
+    }
+}
+
+.sweetnotifier{
+    width: @block-width;
+    position: relative;
+    background-color: @bg-color;
+    height: @block-height;
+    max-height: @block-height;
+    border-radius: 5px;
+    color: @text-color;
+    border: @border-width solid @border-color;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    .sweetnotifier-close {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        position: absolute;
+        display: block;
+        padding: 3px;
+        font-size: 18px;
+        color: #adfaff;
+        transition: all 0.35s cubic-bezier(0.31, 0.39, 0.21, 1.65);
+        cursor: pointer;
+        top: 0px;
+        right: 0px;
+        z-index: 1;
+        box-sizing: content-box;
+
+        i,
+        i:before,
+        i:after
+        {
+            box-sizing: content-box;
         }
+
+        &:hover {
+            transform: scale3d(1.25, 1.25, 1);
+        }
+    }
+
+    .sweetnotifier-image {
+        width: @block-height;
+        height: @block-height;
+        border-right: 1px solid @border-color;
+        display: table;
+        font-size: @block-height / 2;
+        color: #fff;
+        text-align: center;
+
+        i{
+            display: table-cell;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+        }
+
+        .icon-info {
+            color: @info-color;
+        }
+
+        .icon-warning {
+            color: @warning-color;
+        }
+
+        .icon-error {
+            color: @error-color;
+        }
+
+        .icon-success {
+            color: @success-color;
+        }
+    }
+
+    .sweetnotifier-content {
+        position: absolute;
+        height: @block-height;
+        top: 0px;
+        left: 0px;
+        padding: 5px 20px 5px 97px;
+        box-sizing: border-box;
+    }
+
+    .sweetnotifier-title {
+        color: @title-color;
+        margin: 0px;
+        font-size: 20px;
+        min-height: 20px;
+        max-width: 280px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+
+    .sweetnotifier-text {
+        margin-top: 5px;
+        font-size: 14px;
+        line-height: 17px;
+        max-height: @block-height - 2 - 10 - 20 - 5;
+        overflow-y: auto;
+    }
+}
+
+@media only screen and (max-width : 768px){
+    .sweetnotifier-wrapper{
+        width: 100%;
+    }
+    .sweetnotifier{
+        border-radius: 0px;
+        border-width: 0px 0px 1px;
+        width: 100%;
+    }
+
+    .sweetnotifier-wrapper.top-left,
+    .sweetnotifier-wrapper.top-center,
+    .sweetnotifier-wrapper.top-right,
+    .sweetnotifier-wrapper.middle-left,
+    .sweetnotifier-wrapper.middle-center,
+    .sweetnotifier-wrapper.middle-right{
+        top: 0px;
+        left: 0px;
+    }
+
+    .sweetnotifier-wrapper.bottom-left,
+    .sweetnotifier-wrapper.bottom-center,
+    .sweetnotifier-wrapper.bottom-right{
+        bottom: 0px;
+        left: 0px;
     }
 
 }
-

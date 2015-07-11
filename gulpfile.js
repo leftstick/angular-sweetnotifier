@@ -2,47 +2,71 @@
 
 var gulp = require('gulp');
 
-var less = function(dest, isProduction) {
-    var gulp = require('gulp');
+var less = function(dest) {
     var less = require('gulp-less');
-    var prefix = require('gulp-autoprefixer');
+    var LessPluginAutoPrefix = require('less-plugin-autoprefix');
+    var autoprefix = new LessPluginAutoPrefix({
+        browsers: [
+            'last 5 versions'
+        ],
+        cascade: true
+    });
+    var LessPluginCleanCSS = require('less-plugin-clean-css');
+    var cleancss = new LessPluginCleanCSS({advanced: true});
     var rename = require('gulp-rename');
-    var sourcemap = require('gulp-sourcemaps');
-    return gulp.src('src/angular-sweetnotifier.less')
-        .pipe(sourcemap.init())
-        .pipe(less({
-            compress: isProduction
-        }))
-        .pipe(sourcemap.write())
-        .pipe(prefix({
-            browsers: ['last 5 versions'],
-            cascade: true
-        }))
-        .pipe(rename({
-            basename: isProduction ? 'angular-sweetnotifier.min' : 'angular-sweetnotifier'
+
+    return gulp.src('./src/angular-sweetnotifier.less')
+        .pipe(less({plugins: [autoprefix,cleancss]}))
+        .pipe(rename({extname: '.min.css'}))
+        .pipe(gulp.dest(dest));
+
+};
+
+gulp.task('lessDemo', function() {
+    return less('demo/');
+});
+
+gulp.task('lessDist', function() {
+    return less('dist/');
+});
+
+gulp.task('fontsDemo', function() {
+    return gulp.src([
+        './src/sweetnotifier.*',
+        '!./src/sweetnotifier.less'
+    ])
+        .pipe(gulp.dest('./demo/'));
+});
+
+gulp.task('fontsDist', function() {
+    return gulp.src([
+        './src/sweetnotifier.*',
+        '!./src/sweetnotifier.less'
+    ])
+        .pipe(gulp.dest('./dist'));
+});
+
+var js = function(dest) {
+    var fs = require('fs');
+    var template = require('gulp-template');
+    return gulp.src('src/angular-sweetnotifier.js')
+        .pipe(template({
+            template: fs.readFileSync('./src/angular-sweetnotifier.html', {
+                encoding: 'utf-8'
+            }).replace(/(\r\n|\n|\r)/gm, '')
         }))
         .pipe(gulp.dest(dest));
 };
 
-gulp.task('lessDemo', function() {
-    return less('demo/', false);
+gulp.task('jsDemo', function() {
+    return js('./demo/');
 });
 
-gulp.task('lessDist', function() {
-    return less('dist/', true);
+gulp.task('jsDist', function() {
+    return js('./dist/');
 });
 
-gulp.task('copyDemo', function() {
-    return gulp.src('src/angular-sweetnotifier.js')
-        .pipe(gulp.dest('demo/'));
-});
-
-gulp.task('copyDist', function() {
-    return gulp.src('./src/angular-sweetnotifier.js')
-        .pipe(gulp.dest('./dist/'));
-});
-
-gulp.task('demo', ['lessDemo', 'copyDemo'], function() {
+gulp.task('dev', ['lessDemo', 'jsDemo', 'fontsDemo'], function() {
     var webserver = require('gulp-webserver');
     gulp.src('demo/')
         .pipe(webserver({
@@ -54,20 +78,12 @@ gulp.task('demo', ['lessDemo', 'copyDemo'], function() {
         }));
 });
 
-
-gulp.task('dist', ['lessDist', 'copyDist'], function() {
+gulp.task('dist', ['lessDist', 'jsDist', 'fontsDist'], function() {
     var uglify = require('gulp-uglify');
-    var sourcemaps = require('gulp-sourcemaps');
     var rename = require('gulp-rename');
 
     return gulp.src('./dist/angular-sweetnotifier.js')
-        .pipe(sourcemaps.init())
-        .pipe(rename({
-            basename: 'angular-sweetnotifier.min'
-        }))
         .pipe(uglify())
-        .pipe(sourcemaps.write('./', {
-            sourceRoot: '.'
-        }))
+        .pipe(rename({extname: '.min.js'}))
         .pipe(gulp.dest('./dist/'));
 });

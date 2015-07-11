@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="demo">
+<html lang="en">
     <head>
-        <title>DEMO</title>
+        <title>angular-sweetnotifier</title>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui"/>
@@ -9,171 +9,360 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="yes"/>
         <meta name="renderer" content="webkit"/>
         <meta http-equiv="Cache-Control" content="no-siteapp" />
-        <link rel="icon" type="image/png" href="img/favicon.png">
+
+        <link rel="icon" type="image/png" href="img/favicon.ico">
         <link rel="stylesheet" href="prism.css">
-        <link rel="stylesheet" type="text/css" href="bower/amazeui/dist/css/amazeui.min.css">
-        <link rel="stylesheet" type="text/css" href="bower/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="angular-sweetnotifier.css">
+        <link rel="stylesheet" type="text/css" href="bower/materialize/dist/css/materialize.css">
+        <link rel="stylesheet" type="text/css" href="bower/fontawesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="bower/tooltipster/css/tooltipster.css">
+        <link rel="stylesheet" type="text/css" href="angular-sweetnotifier.min.css">
         <link rel="stylesheet" type="text/css" href="demo.css">
     </head>
 
-    <body ng-controller="DemoController">
-        <notifier></notifier>
-
-        <div class="get">
-            <div class="am-g">
-                <div class="col-lg-12">
-                    <h1 class="get-title">angular-sweetnotifier</h1>
-                    <p>
-                    <a href="https://github.com/leftstick/angular-sweetnotifier" class="am-btn am-btn-sm am-btn-secondary">Github Source</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="detail">
-            <div class="am-g am-container">
-                <div class="col-lg-12">
-                    <h2 class="detail-h2">Cool notifications!</h2>
-                    <div class="am-g">
-                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
-                            <h3 class="detail-h3">
-                            <i class="am-icon-arrow-up am-icon-sm"></i>
-                            <i class="am-icon-align-right am-icon-sm"></i>
-                            TopRight
-                            </h3>
-<pre><code class="language-javascript">
-demo.controller('DemoController', function($scope) {
-    $scope.topRight = function() {
-        notifier.push({
-            position: ['top', 'right'],
-            type: 'info',
-            title: 'Info',
-            message: 'Time to show the message!'
-        });
-    };
-});
-</code></pre>
-                            <button ng-click="topRight()" type="button" class="am-btn am-btn-secondary am-btn-block" >Try</button>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
-                            <h3 class="detail-h3">
-                            <i class="am-icon-arrow-up am-icon-sm"></i>
-                            <i class="am-icon-align-left am-icon-sm"></i>
-                            TopLeft
-                            </h3>
-<pre><code class="language-javascript">
-demo.controller('DemoController', function($scope) {
-    $scope.topRight = function() {
-        notifier.push({
-            position: ['top', 'right'],
-            type: 'info',
-            title: 'Info',
-            message: 'Time to show the message!'
-        });
-    };
-});
-</code></pre>
-                            <button ng-click="topLeft()" type="button" class="am-btn am-btn-secondary am-btn-block" >Try</button>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
-                            <h3 class="detail-h3">
-                            <i class="am-icon-align-right am-icon-sm"></i>
-                            MiddleRight
-                            </h3>
-                            <pre><code class="language-javascript">
-demo.controller('DemoController', function($scope) {
-    $scope.topRight = function() {
-        notifier.push({
-            position: ['middle', 'right'],
-            type: 'success',
-            title: 'Success',
-            message: 'Congratulations!'
-        });
-    };
-});
-</code></pre>
-                            <button ng-click="middleRight()" type="button" class="am-btn am-btn-secondary am-btn-block" >try</button>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
-                            <h3 class="detail-h3">
-                            <i class="am-icon-align-left am-icon-sm"></i>
-                            MiddleLeft
-                            </h3>
-                            <pre><code class="language-javascript">
-demo.controller('DemoController', function($scope) {
-    $scope.topLeft = function() {
-        notifier.push({
-            position: ['middle', 'left'],
-            type: 'error',
-            title: 'Error',
-            message: 'What you\'ve done is incorrect!'
-        });
-    };
-});
-</code></pre>
-                            <button ng-click="middleLeft()" type="button" class="am-btn am-btn-secondary am-btn-block" >try</button>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
-                            <h3 class="detail-h3">
-                            <i class="am-icon-arrow-down am-icon-sm"></i>
-                            <i class="am-icon-align-right am-icon-sm"></i>
-                            BottomRight
-                            </h3>
-                            <pre><code class="language-javascript">
-demo.controller('DemoController', function($scope) {
-    $scope.topLeft = function() {
-        notifier.push({
-            position: ['bottom', 'right'],
-            type: 'info',
-            title: 'Info',
-            message: 'Hi, i am here!'
-        });
-    };
-});
-</code></pre>
-                            <button ng-click="bottomRight()" type="button" class="am-btn am-btn-secondary am-btn-block" >try</button>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-12 detail-mb">
-                            <h3 class="detail-h3">
-                            <i class="am-icon-arrow-down am-icon-sm"></i>
-                            <i class="am-icon-align-left am-icon-sm"></i>
-                            BottomLeft
-                            </h3>
-                            <pre><code class="language-javascript">
-demo.controller('DemoController', function($scope) {
-    $scope.topLeft = function() {
-        notifier.push({
-            position: ['bottom', 'left'],
-            type: 'warning',
-            title: 'Warning',
-            message: 'What\'s going on?'
-        });
-    };
-});
-</code></pre>
-                            <button ng-click="bottomLeft()" type="button" class="am-btn am-btn-secondary am-btn-block" >try</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hope">
-            <div class="am-g am-container">
-                <div class="col-lg-8 col-md-6 col-sm-12">
-                    <h2 class="hope-title">
-                        Give message at desired place!
-                    </h2>
-                </div>
+    <body>
+        <div class="top-introduction valign-wrapper light-blue">
+            <div class="valign center" style="width: 100%;">
+                <h1>angular-sweetnotifier</h1>
+                <a class="btn-floating waves-effect waves-light btn-large blue-grey darken-4 tooltip" href="https://github.com/leftstick/angular-sweetnotifier" title="View On Github">
+                    <i class="fa fa-github-square"></i>
+                </a>
+                <p>Cool notification directive helps developers take more efforts on BL</p>
             </div>
         </div>
 
+        <div class="container">
+
+            <h4>Demonstration</h4>
+            <br/>
+
+            <div class="matrix clearfix" ng-app="matrix" ng-controller="MatrixController">
+                <ul class="clearfix tooltip" title="Click each block following to call a notification with same position as described">
+                    <li class="indigo valign-wrapper" ng-click="notify('top', 'left')">
+                        <div class="valign center-align full-width">top - left</div>
+                    </li>
+                    <li class="indigo valign-wrapper" ng-click="notify('top', 'center')">
+                        <div class="valign center-align full-width">top - center</div>
+                    </li>
+                    <li class="indigo valign-wrapper" ng-click="notify('top', 'right')">
+                        <div class="valign center-align full-width">top - right</div>
+                    </li>
+                </ul>
+                <ul class="clearfix tooltip" title="Click each block following to call a notification with same position as described">
+                    <li class="indigo valign-wrapper" ng-click="notify('middle', 'left')">
+                        <div class="valign center-align full-width">middle - left</div>
+                    </li>
+                    <li class="cyan darken-3 valign-wrapper" ng-click="notify('middle', 'center')">
+                        <div class="valign center-align full-width">middle - center</div>
+                    </li>
+                    <li class="indigo valign-wrapper" ng-click="notify('middle', 'right')">
+                        <div class="valign center-align full-width">middle - right</div>
+                    </li>
+                </ul>
+                <ul class="clearfix tooltip" title="Click each block following to call a notification with same position as described">
+                    <li class="indigo valign-wrapper" ng-click="notify('bottom', 'left')">
+                        <div class="valign center-align full-width">bottom - left</div>
+                    </li>
+                    <li class="indigo valign-wrapper" ng-click="notify('bottom', 'center')">
+                        <div class="valign center-align full-width">bottom - center</div>
+                    </li>
+                    <li class="indigo valign-wrapper" ng-click="notify('bottom', 'right')">
+                        <div class="valign center-align full-width">bottom - right</div>
+                    </li>
+                </ul>
+                <sweetnotifier placement="{{ placement }}" use-native-while-blur="{{ nativeWhileBlur }}"  native-icons="{{ nativeIcons }}">
+                </sweetnotifier>
+            </div>
+            <br/>
+
+            <h4>Installation</h4>
+            <br/>
+
+            <h5 class="title">Install with Bower</h5>
+            <p>You can install and manage <code class="snippet">angular-sweetnotifier</code> using <a href="http://bower.io/">Bower</a>:</p>
+            <pre class="line-numbers"><code class="language-bash">
+bower install angular-sweetnotifier --save<!--
+            --></code></pre>
+            <br/>
+
+            <h5 class="title">Install with npm</h5>
+            <p>You can also install <code class="snippet">angular-sweetnotifier</code> using <a href="http://npmjs.org/">npm</a>:</p>
+            <pre class="line-numbers"><code class="language-bash">
+npm install angular-sweetnotifier --save<!--
+            --></code></pre>
+            <br/>
+
+            <h5 class="title">Download manually</h5>
+            <p>You can even download <code class="snippet">angular-sweetnotifier</code> from <a href="https://github.com/leftstick/angular-sweetnotifier/zipball/master">Github</a></p>
+            <br/>
+
+            <h4>Import</h4>
+            <br/>
+
+            <h5 class="title">AMD</h5>
+
+            <pre class="line-numbers"><code class="language-markup">
+&lt;link rel="stylesheet" type="text/css" href="bower_components/angular-sweetnotifier/dist/angular-sweetnotifier.min.css"&gt;<!--
+            --></code></pre>
+
+            <pre class="line-numbers"><code class="language-javascript">
+require.config({
+    paths: {
+        'angular': 'bower_components/angular/angular.min',
+        'angular-animate': 'bower_components/angular-animate/angular-animate.min',
+        'angular-sweetnotifier': 'bower_components/angular-sweetnotifier/dist/angular-sweetnotifier.min'
+    },
+    shim: {
+        'angular': {
+            exports: 'angular'
+        },
+        'angular-animate': {
+            deps: ['angular']
+        },
+        'angular-sweetnotifier': {
+            deps: ['angular']
+        }
+    }
+});
+
+define(['angular-sweetnotifier'], function(){
+    //loaded
+});<!--
+            --></code></pre>
+            <br/>
+
+            <h5 class="title">CommonJS</h5>
+
+            <pre class="line-numbers"><code class="language-markup">
+&lt;link rel="stylesheet" type="text/css" href="node_modules/angular-sweetnotifier/dist/angular-sweetnotifier.min.css"&gt;<!--
+            --></code></pre>
+
+            <pre class="line-numbers"><code class="language-javascript">
+require('angular-animate');
+require('angular-sweetnotifier');<!--
+            --></code></pre>
+            <br/>
+
+            <h5 class="title">Plain JavaScript</h5>
+
+            <pre class="line-numbers"><code class="language-markup">
+&lt;link rel="stylesheet" type="text/css" href="bower_components/angular-sweetnotifier/dist/angular-sweetnotifier.min.css"&gt;
+&lt;script type="text/javascript" src="bower_components/angular/angular.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="bower_components/angular-sweetnotifier/dist/angular-sweetnotifier.min.js"&gt;&lt;/script&gt;<!--
+            --></code></pre>
+            <br/>
+
+            <h4>Usage</h4>
+            <br/>
+
+            <h5 class="title">Configuration</h5>
+
+            <pre class="line-numbers"><code class="language-javascript">
+angular.module('demo', [
+    'angular-sweetnotifier',
+    'ngAnimate'
+])
+.config(['notifierProvider', function(notifierProvider) {
+    //set position of notification
+    //following placement value can be used
+    //vertical:   top middle bottom
+    //horizontal: left center right
+    //top center by default
+    notifierProvider.setPlacement('bottom', 'right');
+
+    //use native notification while user leave this page for better UX
+    //true by default
+    notifierProvider.setUseNativeWhileBlur(false);
+
+    //set icons for native notification
+    //a key/value object is required
+    //only info, error, warning, success as be used as key
+    //no icon for native notification by default
+    notifierProvider.setNativeIcons({
+        info: 'http://findicons.com/files/icons/2166/oxygen/48/document_properties.png',
+        error: 'http://findicons.com/files/icons/989/ivista_2/128/error.png',
+        warning: 'http://findicons.com/files/icons/744/juicy_fruit/128/warning.png',
+        success: 'http://findicons.com/files/icons/719/crystal_clear_actions/64/agt_action_success.png'
+    });
+}]);<!--
+            --></code></pre>
+            <br/>
+
+            <h5 class="title">Diective</h5>
+
+            Put following <code class="snippet">directive</code> into your HTML
+
+            <pre class="line-numbers"><code class="language-markup">
+&lt;sweetnotifier placement="{{ placement }}" use-native-while-blur="{{ nativeWhileBlur }}"  native-icons="{{ nativeIcons }}"&gt;&lt;/sweetnotifier&gt;<!--
+            --></code></pre>
+
+            <p><code class="snippet">placement</code>, <code class="snippet">use-native-while-blur</code>, <code class="snippet">native-icons</code> are just like what you saw in above <code class="snippet">configuration</code> phase.</p>
+
+            <p>And attributes has higher priority than <code class="snippet">configuration</code>.</p>
+
+            <p>But be aware that each attribute in <code class="snippet">directive</code> is optional. And can be changed in later use.</p>
+
+            <blockquote>
+                This <code class="snippet">directive</code> is mandatory as notification placeholder, and it can be put anywhere in <code class="snippet">body</code> tag.
+            </blockquote>
+            <br/>
+
+            <h5 class="title">Call notification</h5>
+
+            Calling a notification is very simple as following:
+
+            <pre class="line-numbers"><code class="language-javascript">
+angular.module('demo', [
+    'angular-sweetnotifier',
+    'ngAnimate'
+])
+.controller('DemoController', function($scope, notifier, UserService) {
+    //notifier must be injected as service, in order to have the notification functionality available
+
+    $scope.saveUser = function(user){
+        UserService.saveUser(user)
+        .success(function(){
+
+            //emit an success type of notification with specified title and content
+            notifier.emit({
+                type: 'success',
+                title: 'Success',
+                content: 'User have been saved!'
+            });
+        })
+        .error(function(){
+
+            //emit an error type of notification with specified title and content
+            notifier.emit({
+                type: 'error',
+                title: 'Error',
+                content: 'Save user failed!'
+            });
+        });
+    };
+});<!--
+            --></code></pre>
+            <br/>
+
+            <h4>API</h4>
+            <br/>
+
+            <h5 class="title">notifierProvider</h5>
+            <br/>
+            <h6>setPlacement(vertical, horizontal)</h6>
+
+            <table class="bordered striped hoverable">
+                <thead>
+                  <tr>
+                      <th>Param</th>
+                      <th>Type</th>
+                      <th>Details</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>vertical</td>
+                    <td><span class="string-type">string</span></td>
+                    <td>Specify the vertical position of the notification. <code class="snippet">top</code>, <code class="snippet">middle</code>, <code class="snippet">bottom</code> can be used</td>
+                  </tr>
+                  <tr>
+                      <td>horizontal</td>
+                      <td><span class="string-type">string</span></td>
+                      <td>Specify the horizontal position of the notification. <code class="snippet">left</code>, <code class="snippet">center</code>, <code class="snippet">right</code> can be used</td>
+                  </tr>
+                </tbody>
+            </table>
+            <br/>
+            <h6>setUseNativeWhileBlur(useNative)</h6>
+
+            <table class="bordered striped hoverable">
+                <thead>
+                  <tr>
+                      <th>Param</th>
+                      <th>Type</th>
+                      <th>Details</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>useNative</td>
+                    <td><span class="boolean-type">boolean</span></td>
+                    <td>Whether to use native notification while user leave this page</td>
+                  </tr>
+                </tbody>
+            </table>
+            <br/>
+            <h6>setNativeIcons(icons)</h6>
+
+            <table class="bordered striped hoverable">
+                <thead>
+                  <tr>
+                      <th>Param</th>
+                      <th>Type</th>
+                      <th>Details</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>icons</td>
+                    <td><span class="object-type">object</span></td>
+                    <td>
+                        key/value paires to specify the icon to be used while native notification is active, for example:
+                        <pre class="line-numbers"><code class="language-javascript">
+{
+    info: 'http://xxx.com/info.png',
+    error: 'http://xxx.com/error.png',
+    warning: 'http://xxx.com/warning.png',
+    success: 'http://xxx.com/success.png'
+}<!--
+                        --></code></pre>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+            <br/>
+
+            <h5 class="title">notifier</h5>
+            <br/>
+            <h6>emit(options)</h6>
+            <table class="bordered striped hoverable">
+                <thead>
+                  <tr>
+                      <th>Param</th>
+                      <th>Type</th>
+                      <th>Details</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>options</td>
+                    <td><span class="object-type">object</span></td>
+                    <td>
+                        options to describe this notification.
+                        <ul>
+                            <li><strong>type</strong> - {<code class="snippet">string</code>}: can be <code class="snippet">info</code>, <code class="snippet">error</code>, <code class="snippet">warning</code>, <code class="snippet">success</code>. <code class="snippet">info</code> by default</li>
+                            <li><strong>useNative</strong> - {<code class="snippet">boolean</code>}: whether to display this notification using native UI. <code class="snippet">false</code> by default</li>
+                            <li><strong>timeout</strong> - {<code class="snippet">number</code>}: determine how long the notification will be last on the page.(not available for native UI). <code class="snippet">15000</code> by default</li>
+                            <li><strong>title</strong> - {<code class="snippet">string</code>}: title of the notification. empty by default</li>
+                            <li><strong>content</strong> - {<code class="snippet">string</code>}: title of the notification. empty by default</li>
+                        </ul>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+
+        </div>
 
     <footer class="footer">
             <p>&copy; 2014 Licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a>. by <a href="http://leftstick.github.io/" target="_blank">Howard.Zuo</a>.</p>
     </footer>
     <script type="text/javascript" src="prism.js"></script>
+    <script type="text/javascript" src="bower/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower/tooltipster/js/jquery.tooltipster.min.js"></script>
     <script type="text/javascript" src="bower/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower/angular-animate/angular-animate.min.js"></script>
     <script type="text/javascript" src="angular-sweetnotifier.js"></script>

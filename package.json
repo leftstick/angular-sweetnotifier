@@ -1,7 +1,8 @@
 {
   "name": "angular-sweetnotifier",
-  "version": "1.0.5",
-  "description": "A simple angular-sweetnotifer",
+  "version": "2.0.0",
+  "description": "A simple angular-sweetnotifier",
+  "main": "./dist/angular-sweetnotifier.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/leftstick/angular-sweetnotifier.git"
@@ -17,12 +18,13 @@
   },
   "homepage": "https://github.com/leftstick/angular-sweetnotifier",
   "devDependencies": {
-    "gulp": "^3.8.9",
-    "gulp-autoprefixer": "^1.0.1",
-    "gulp-less": "^1.3.6",
-    "gulp-rename": "^1.2.0",
-    "gulp-sourcemaps": "^1.2.4",
-    "gulp-uglify": "^1.0.1",
-    "gulp-webserver": "^0.8.4"
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-template": "^3.0.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-webserver": "^0.9.1",
+    "less-plugin-autoprefix": "^1.4.2",
+    "less-plugin-clean-css": "^1.5.0"
   }
 }
