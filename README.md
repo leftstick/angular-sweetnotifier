@@ -3,7 +3,6 @@
 
 ![](http://img.shields.io/badge/bower_module-v2.0.0-green.svg)
 [![NPM version][npm-image]][npm-url]
-![][david-url]
 
 A simple angular notifier
 
@@ -18,4 +17,3 @@ A simple angular notifier
 
 [npm-url]: https://npmjs.org/package/angular-sweetnotifier
 [npm-image]: https://badge.fury.io/js/angular-sweetnotifier.png
-[david-url]: https://david-dm.org/leftstick/angular-sweetnotifier.png
