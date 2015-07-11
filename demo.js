@@ -1,59 +1,59 @@
 'use strict';
-var demo = angular.module('demo', ['angular-sweetnotifier', 'ngAnimate']);
 
-demo.controller('DemoController', function($scope, notifier) {
+var matrix = angular.module('matrix', [
+    'angular-sweetnotifier',
+    'ngAnimate'
+]);
 
-    $scope.topRight = function() {
-        notifier.push({
-            position: ['top', 'right'],
+var TYPES = [
+    'info',
+    'error',
+    'warning',
+    'success'
+];
+
+var getType = function() {
+    return TYPES[Math.floor(Math.random() * (3 + 1))];
+};
+
+matrix.controller('MatrixController', function($scope, notifier, $timeout) {
+    $scope.notify = function(ver, hor) {
+        $scope.placement = ver + ',' + hor;
+        var type = getType();
+        notifier.emit({
+            type: type,
+            timeout: 3000,
+            title: type,
+            content: 'This is an ' + type + ' notification!'
+        });
+    };
+
+    $timeout(function() {
+        notifier.emit({
             type: 'info',
+            timeout: 3000,
             title: 'Info',
-            message: 'Time to show the message!'
+            content: 'This is an Info notification!'
         });
-    };
+    }, 3000);
+});
+var $win = $(window);
 
-    $scope.topLeft = function() {
-        notifier.push({
-            position: ['top', 'left'],
-            type: 'warning',
-            title: 'Warning',
-            message: 'You shouldn\'t do this!'
-        });
-    };
+var updateTooltip = function() {
+    if ($win.width() >= 768) {
+        $('.tooltip').tooltipster({position: 'right'});
+    } else {
+        $('.tooltip').tooltipster('destroy');
+    }
+};
 
-    $scope.middleRight = function() {
-        notifier.push({
-            position: ['middle', 'right'],
-            type: 'success',
-            title: 'Success',
-            message: 'Congratulations!'
-        });
-    };
+updateTooltip();
 
-    $scope.middleLeft = function() {
-        notifier.push({
-            position: ['middle', 'left'],
-            type: 'error',
-            title: 'Error',
-            message: 'What you\'ve done is incorrect!'
-        });
-    };
+$win.on('resize', updateTooltip);
 
-    $scope.bottomRight = function() {
-        notifier.push({
-            position: ['bottom', 'right'],
-            type: 'info',
-            title: 'Info',
-            message: 'Hi, i am here!'
-        });
-    };
-
-    $scope.bottomLeft = function() {
-        notifier.push({
-            position: ['bottom', 'left'],
-            type: 'warning',
-            title: 'Warning',
-            message: 'What\'s going on?'
-        });
-    };
+$('.matrix ul li').on('mouseenter', function() {
+    $(this).addClass('z-depth-5');
+});
+$('.matrix ul li').on('mouseleave', function() {
+    $(this).removeClass('z-depth-5');
 });
