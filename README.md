@@ -16,6 +16,6 @@ A simple angular notifier
 [MIT License](https://raw.githubusercontent.com/leftstick/angular-sweetnotifier/master/LICENSE)
 
 
-[npm-url]: https://npmjs.org/package/fe-interview
-[npm-image]: https://badge.fury.io/js/fe-interview.png
-[david-url]: https://david-dm.org/leftstick/fe-interview.png
+[npm-url]: https://npmjs.org/package/angular-sweetnotifier
+[npm-image]: https://badge.fury.io/js/angular-sweetnotifier.png
+[david-url]: https://david-dm.org/leftstick/angular-sweetnotifier.png
