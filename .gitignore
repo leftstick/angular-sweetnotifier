@@ -14,3 +14,5 @@ bower/angular-animate/.bower.json
 bower/angular-animate/bower.json
 bower/angular-animate/package.json
 bower/angular-animate/README.md
+
+.DS_Store
