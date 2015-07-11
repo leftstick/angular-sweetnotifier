@@ -1,7 +1,7 @@
 /**
  *
  *  @author Howard.Zuo
- *  @date July 9, 2015
+ *  @date July 10, 2015
  *
  **/
 (function(global, factory) {
@@ -60,51 +60,71 @@
 
     var defaults = {
         type: 'info',
-        useNative: true,
-        timeout: 5000,
+        useNative: false,
+        timeout: 15000,
         title: '',
         content: ''
     };
 
     var placement = hash('top') & hash('center');
+    var nativeWhileBlur = true;
+    var nativeIcons;
+    var winBlur = false;
+
+    var setPlacement = function(pos) {
+        var args = [];
+        ng.forEach(pos, function(i) {
+            this.push(i.replace(/ /g, ''));
+        }, args);
+
+        if (args.length === 0) {
+            return;
+        }
+
+        if (args.length === 1) {
+            if (VERTICAL_OPTS.indexOf(args[0]) > -1) {
+                return hash(args[0]) & hash('center');
+            }
+            if (HORIZONTAL_OPTS.indexOf(args[0]) > -1) {
+                return hash('top') & hash(args[0]);
+            }
+        }
+
+        if (VERTICAL_OPTS.indexOf(args[0]) > -1) {
+            return hash(args[0]) & (HORIZONTAL_OPTS.indexOf(args[1]) > -1 ? hash(args[1]) : hash('center'));
+        }
+
+        if (HORIZONTAL_OPTS.indexOf(args[0]) > -1) {
+            return (VERTICAL_OPTS.indexOf(args[1]) > -1 ? hash(args[1]) : hash('top')) & hash(args[0]);
+
+        }
+
+        if (VERTICAL_OPTS.indexOf(args[1]) > -1) {
+            return hash(args[1]) & (HORIZONTAL_OPTS.indexOf(args[0]) > -1 ? hash(args[0]) : hash('center'));
+        }
+
+        if (HORIZONTAL_OPTS.indexOf(args[1]) > -1) {
+            return (VERTICAL_OPTS.indexOf(args[0]) > -1 ? hash(args[0]) : hash('top')) & hash(args[1]);
+        }
+    };
 
     mod.provider('notifier', function() {
 
         this.setPlacement = function() {
             var args = Array.prototype.slice.call(arguments);
-            if (args.length === 0) {
-                return;
+            var pos = setPlacement(args);
+            if (pos) {
+                placement = pos;
             }
+        };
 
-            if (args.length === 1) {
-                if (VERTICAL_OPTS.indexOf(args[0]) > -1) {
-                    placement = hash(args[0]) & hash('center');
-                    return;
-                }
-                if (HORIZONTAL_OPTS.indexOf(args[0]) > -1) {
-                    placement = hash('top') & hash(args[0]);
-                    return;
-                }
-            }
+        this.setUseNativeWhileBlur = function(bool) {
+            nativeWhileBlur = !!bool;
+        };
 
-            if (VERTICAL_OPTS.indexOf(args[0]) > -1) {
-                placement = hash(args[0]) & (HORIZONTAL_OPTS.indexOf(args[1]) > -1 ? hash(args[1]) : hash('center'));
-                return;
-            }
-
-            if (HORIZONTAL_OPTS.indexOf(args[0]) > -1) {
-                placement = (VERTICAL_OPTS.indexOf(args[1]) > -1 ? hash(args[1]) : hash('top')) & hash(args[0]);
-                return;
-            }
-
-            if (VERTICAL_OPTS.indexOf(args[1]) > -1) {
-                placement = hash(args[1]) & (HORIZONTAL_OPTS.indexOf(args[0]) > -1 ? hash(args[0]) : hash('center'));
-                return;
-            }
-
-            if (HORIZONTAL_OPTS.indexOf(args[1]) > -1) {
-                placement = (VERTICAL_OPTS.indexOf(args[0]) > -1 ? hash(args[0]) : hash('top')) & hash(args[1]);
-                return;
+        this.setNativeIcons = function(ni) {
+            if (ng.isObject(ni)) {
+                nativeIcons = ni;
             }
         };
 
@@ -119,13 +139,51 @@
         ];
     });
 
-    var dir = function($rootScope, $timeout) {
+    var dir = function($rootScope, $timeout, $window) {
         return {
             restrict: 'E',
-            link: function($scope) {
+            link: function($scope, element, attrs) {
+
+                var blur = function() {
+                    winBlur = true;
+                };
+                var focus = function() {
+                    winBlur = false;
+                };
+                var $win = ng.element($window);
+
+                $win.on('blur', blur);
+                $win.on('focus', focus);
 
                 $scope.items = [];
                 $scope.placement = PLACEMENTS[placement];
+
+                attrs.$observe('placement', function(newValue) {
+                    if (typeof newValue === 'undefined' || newValue === '') {
+                        return;
+                    }
+                    var pos = setPlacement(newValue.split(','));
+                    if (pos) {
+                        placement = PLACEMENTS[pos];
+                        $scope.placement = placement;
+                    }
+                });
+
+                attrs.$observe('useNativeWhileBlur', function(newValue) {
+                    if (typeof newValue === 'undefined' || newValue === '') {
+                        return;
+                    }
+                    nativeWhileBlur = newValue === 'true';
+                });
+
+                attrs.$observe('nativeIcons', function(newValue) {
+                    if (typeof newValue === 'undefined' || newValue === '') {
+                        return;
+                    }
+                    try {
+                        nativeIcons = JSON.parse(newValue);
+                    } catch (e) {}
+                });
 
                 $scope.remove = function(item) {
                     var i = $scope.items.indexOf(item);
@@ -136,14 +194,14 @@
                 };
 
                 $rootScope.$on('newsweetnotification', function(event, options) {
-                    if (options.useNative && Native) {
+                    if ((options.useNative || (nativeWhileBlur && winBlur)) && Native) {
                         new Native(
                             options.title, {
                                 body: options.content,
                                 dir: 'auto', // or ltr, rtl
                                 lang: 'en-US', //lang used within the notification.
                                 tag: 'notificationPopup',
-                                icon: options.icon
+                                icon: nativeIcons ? nativeIcons[options.type] : ''
                             }
                         );
                         return;
@@ -160,13 +218,21 @@
                 });
 
                 //unregister all the listener from the element
-                $scope.$on('$destroy', function() {});
+                $scope.$on('$destroy', function() {
+                    $win.off('blur', blur);
+                    $win.off('focus', focus);
+                });
             },
             template: '<div class="sweetnotifier-wrapper" ng-class="placement">    <div class="sweetnotifier" ng-repeat="item in items">        <div class="sweetnotifier-close" ng-click="remove(item)">            <i class="icon-close"></i>        </div>        <div class="sweetnotifier-image"><i class="icon-{{item.type}}"></i></div>        <div class="sweetnotifier-content">            <h3 class="sweetnotifier-title">{{item.title}}</h3>            <div class="sweetnotifier-text">{{item.content}}</div>        </div>    </div></div>'
         };
     };
 
-    mod.directive('sweetnotifier', ['$rootScope', '$timeout', dir]);
+    mod.directive('sweetnotifier', [
+        '$rootScope',
+        '$timeout',
+        '$window',
+        dir
+    ]);
 
     return name;
 }));
