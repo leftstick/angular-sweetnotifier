@@ -1,7 +1,7 @@
 # angular-sweetnotifier #
 =====================
 
-![](http://img.shields.io/badge/bower_module-v2.0.0-green.svg)
+![](http://img.shields.io/badge/bower_module-v2.0.1-green.svg)
 [![NPM version][npm-image]][npm-url]
 
 A simple angular notifier
