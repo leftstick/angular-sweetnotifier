@@ -85,3 +85,23 @@ h6{
 .matrix ul li:not(:first-child){
     margin-left: 1px;
 }
+
+@media only screen and (max-width: 400px){
+
+    .matrix ul{
+        width: 300px;
+    }
+
+    .matrix ul li{
+        width: 99px;
+        height: 99px;
+    }
+
+    pre[class*="language-"]{
+        width: 300px;
+    }
+
+    pre.usenative-doc{
+        width: 200px;
+    }
+}

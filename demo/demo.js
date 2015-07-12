@@ -16,7 +16,7 @@ var getType = function() {
     return TYPES[Math.floor(Math.random() * (3 + 1))];
 };
 
-matrix.controller('MatrixController', function($scope, notifier, $timeout) {
+matrix.controller('MatrixController', function($scope, notifier) {
     $scope.notify = function(ver, hor) {
         $scope.placement = ver + ',' + hor;
         var type = getType();
@@ -27,15 +27,6 @@ matrix.controller('MatrixController', function($scope, notifier, $timeout) {
             content: 'This is an ' + type + ' notification!'
         });
     };
-
-    $timeout(function() {
-        notifier.emit({
-            type: 'info',
-            timeout: 3000,
-            title: 'Info',
-            content: 'This is an Info notification!'
-        });
-    }, 3000);
 });
 var $win = $(window);
 
