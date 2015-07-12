@@ -27,6 +27,17 @@ matrix.controller('MatrixController', function($scope, notifier) {
             content: 'This is an ' + type + ' notification!'
         });
     };
+
+    $scope.native = function() {
+        var type = getType();
+        notifier.emit({
+            useNative: true,
+            type: type,
+            timeout: 3000,
+            title: type,
+            content: 'This is an ' + type + ' notification!'
+        });
+    };
 });
 var $win = $(window);
 
